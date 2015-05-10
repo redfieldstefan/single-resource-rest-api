@@ -15,5 +15,5 @@ require('./routes/rant_routes')(rantRoutes);
 app.use('/api', rantRoutes);
 
 app.listen(process.env.port || port, function () {
-	console.log('server running on port ' + (process.env.PORT || 3000));
+	console.log('server running on port ' + (process.env.PORT || port));
 });
