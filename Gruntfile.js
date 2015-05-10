@@ -5,6 +5,7 @@ module.exports = function (grunt) {
 	grunt.loadNpmTasks('grunt-contrib-jshint');
 	grunt.loadNpmTasks('grunt-contrib-watch');
 	grunt.loadNpmTasks('grunt-simple-mocha');
+	grunt.loadNpmTasks('grunt-nodemon');
 
 	var srcFiles = ['Gruntfile.js', './test/**/*test.js', './routes/*.js', './models/*.js'];
 	
@@ -24,6 +25,12 @@ module.exports = function (grunt) {
 		simplemocha: {
 			dev: {
 				src: ['./test/**/*test.js']
+			}
+		},
+
+		nodemon: {
+			dev: {
+				src: srcFiles
 			}
 		},
 
