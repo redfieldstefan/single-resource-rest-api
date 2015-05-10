@@ -4,7 +4,8 @@
   "description": "Create a single resource rest API with Express that's backed by Mongo. I'm leaving this pretty open to interpretation. I want you to write this from scratch, don't just copy and paste code from class or previous projects. Add a feature of Mongoose that we didn't use class, such as data validation.",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "./node_modules/grunt-cli/bin/grunt test",
+    "start": "nodemon server.js"
   },
   "repository": {
     "type": "git",
@@ -23,11 +24,15 @@
     "grunt-cli": "^0.1.13",
     "grunt-contrib-jshint": "^0.11.2",
     "grunt-contrib-watch": "^0.6.1",
+    "grunt-nodemon": "^0.4.0",
     "grunt-simple-mocha": "^0.4.0",
-    "mocha": "^2.2.4"
+    "mocha": "^2.2.4",
+    "superagent-cli": "^1.5.5"
   },
   "dependencies": {
     "body-parser": "^1.12.3",
-    "mongoose": "^4.0.2"
+    "express": "^4.12.3",
+    "mongoose": "^4.0.2",
+    "mongoose-validator": "^1.0.3"
   }
 }
