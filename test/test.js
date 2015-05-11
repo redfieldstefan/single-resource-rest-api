@@ -48,7 +48,7 @@ describe('Needs Rants to alter', function() {
 		var rantTest = new Rant({title: 'Test', rant: 'Fuck tests'});
 		rantTest.save(function(err, data) {
 			if(err) {
-				throw err
+				throw err;
 			}
 			this.rantTest = data;
 			done();
