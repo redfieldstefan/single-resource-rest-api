@@ -11,7 +11,7 @@ var titleValidator = [
 	})
 ];
 
-var bodyValidator = [
+var rantValidator = [
 	validate({
 		validator: 'isLength',
 		arguments: [1, 50],
@@ -21,7 +21,7 @@ var bodyValidator = [
 
 var rantSchema = mongoose.Schema({
 	title: {type: String, required: 'title is required', validate: titleValidator},
-	rant: {type: String, required: 'a rant is required', validate: bodyValidator},
+	rant: {type: String, required: 'a rant is required', validate: rantValidator},
 	recipient: String
 });
 
