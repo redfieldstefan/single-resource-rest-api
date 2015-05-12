@@ -1,70 +1,40 @@
 'use strict';
 
+var bodyParser = require('body-parser');
 var Rant = require('../models/Rant');
-var bodyparser = require('body-parser');
+var Sql = require('sequelize');
+var sql = new Sql('notes_dev', 'notes_dev', 'foobar123', {
+	dialect: 'postgres'
+});
 
-module.exports = function(router) {
-	router.use(bodyparser.json());
+moduel.exports = function (router) {
+	router.use(bodyParser.json());
+
+	router.post('/rants', function(req, res) {
+		sql.sync()
+		.then(function(){
+			Rant.create(req.body)
+		})
+		 .then(function(data) {
+		 	res.json(data);
+		 })
+		 .error(function(err) {
+		 	console.log(err);
+		 	res.status(500).json({msg: 'Internal server error'});
+		 })
+	});
 
 	router.get('/rants', function(req, res) {
-		Rant.find({}, function(err, data) {
-			if(err){
+		sql.sync()
+		.then(function() {
+			Rant.all()
+			.then(function(data){
+				res.json(data);
+			})
+			.error(function(err){
 				console.log(err);
-				return res.status(500).json({msg: 'Uh oh! There must have been a server error somewhere.'});
-			} 
-			res.json(data);
+		 		res.status(500).json({msg: 'Internal server error'});
+			})
 		});
 	});
-
-	router.post('/rants', function(req, res){
-		var newRant = new Rant(req.body);
-		newRant.save(function(err, data){
-			if(err){
-				console.log(err);
-				return res.status(500).json({msg: 'Uh oh! There must have been a server error somewhere.'});
-			}
-
-			res.json(data);
-			
-		});
-	});
-
-	router.put('/rants/:id', function(req, res) {
-		var update = req.body;
-		delete update._id;
-
-		Rant.update({'_id': req.params.id}, update, function(err, data) {
-			if(err){
-				console.log(err);
-				return res.status(500).json({msg: 'internal server error'});
-			}
-
-			res.json({msg: "Put: Nailed it"});
-		});
-	});
-
-	router.patch('/rants/:id', function(req, res) {
-		var update = req.body;
-		delete update._id;
-
-		Rant.update({'_id': req.params.id}, update, function(err, data) {
-			if(err){
-				console.log(err);
-				return res.status(500).json({msg: 'internal server error'});
-			}
-
-			res.json({msg: "Patch: Nailed it"});
-		});
-	});
-
-	router.delete('/rants/:id', function(req, res) {
-		Rant.remove({'_id': req.params.id}, function(err, data) {
-			if(err){
-				console.log(err);
-				return res.status(500).json({msg: 'internal server error'});
-			}
-
-			res.json({msg: 'Delete: Nailed it'});
-		});
-	});
-};
+}
