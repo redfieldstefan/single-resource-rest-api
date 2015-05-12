@@ -7,21 +7,22 @@ var sql = new Sql('notes_dev', 'notes_dev', 'foobar123', {
 	dialect: 'postgres'
 });
 
-moduel.exports = function (router) {
+module.exports = function (router) {
 	router.use(bodyParser.json());
 
 	router.post('/rants', function(req, res) {
 		sql.sync()
 		.then(function(){
 			Rant.create(req.body)
-		})
-		 .then(function(data) {
-		 	res.json(data);
+			.then(function(data) {
+		 	 res.json(data);
 		 })
 		 .error(function(err) {
 		 	console.log(err);
 		 	res.status(500).json({msg: 'Internal server error'});
-		 })
+		 });
+
+		});
 	});
 
 	router.get('/rants', function(req, res) {
@@ -34,7 +35,48 @@ moduel.exports = function (router) {
 			.error(function(err){
 				console.log(err);
 		 		res.status(500).json({msg: 'Internal server error'});
-			})
+			});
 		});
 	});
-}
+
+	router.put('/rants/:id', function(req, res) {
+		var id = req.params.id;
+		sql.sync()
+		.then(function(){
+			Rant.find(id)
+			.then(function(item){
+				item.updateAttributes({
+					title: req.body.title,
+					rant: req.body.rant
+				});
+			})
+		 .then(function() {
+		 	res.json({msg: 'Put request complete'});
+		 })
+		 .error(function(err) {
+		 	console.log(err);
+		 	res.status(500).json({msg: 'Internal server error'});
+		 });
+		})
+	});
+
+	router.delete('/rants/:id', function(req, res) {
+		var id = req.params.id;
+		sql.sync()
+		.then(function(){
+			Rant.find(id)
+			.then(function(item){
+				item.destroy();
+			})
+		 .then(function() {
+		 	res.json({msg: 'delete request complete'});
+		 })
+		 .error(function(err) {
+		 	console.log(err);
+		 	res.status(500).json({msg: 'Internal server error'});
+		 });
+		})
+	});
+
+
+};
