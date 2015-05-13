@@ -1,9 +1,11 @@
 'use-strict';
 
-process.env.MONGOLAB_URI = 'mongodb://localhost/notes_test';
+process.env.PG_DATABASE = 'notes_test';
+process.env.PG_USER = 'notes_test';
+process.env.PG_PASS = 'foobar123';
 require('../server');
 
-var mongoose = require('mongoose');
+
 var chai = require('chai');
 var chaihttp = require('chai-http');
 var Rant = require('../models/Rant.js');
@@ -11,11 +13,6 @@ chai.use(chaihttp);
 var expect = chai.expect;
 
 describe('Rant REST api, get and post requests', function() {
-	after(function(done) {
-		mongoose.connection.db.dropDatabase(function() {
-			done();
-		});
-	});
 
 	it('Should create a Rant object', function(done){
 		chai.request('localhost:3000/')
@@ -25,7 +22,7 @@ describe('Rant REST api, get and post requests', function() {
 				expect(err).to.eql(null);
 				expect(res.body.title).to.eql('Test');
 				expect(res.body.rant).to.eql('Test rant');
-				expect(res.body).to.have.property('_id');
+				expect(res.body).to.have.property('id');
 				done();
 			});
 	});
@@ -44,59 +41,36 @@ describe('Rant REST api, get and post requests', function() {
 
 describe('Needs Rants to alter', function() {
 
-	beforeEach(function(done) {
-		var rantTest = new Rant({title: 'Test', rant: 'Fuck tests'});
-		rantTest.save(function(err, data) {
-			if(err) {
-				throw err;
-			}
-			this.rantTest = data;
-			done();
-		}.bind(this));
+	var testID;
+
+	before(function(done) {
+		Rant.create({title: 'Test', rant: 'Fuck psql'}).then(function(task){
+			task.save();
+			testID = task.id;
+		});
+		done();
 	}); 
 
 	it('should replace a Rant', function(done){
 		chai.request('localhost:3000')
-			.put('/api/rants/' + this.rantTest._id)
+			.put('/api/rants/' + testID )
 			.send({title: 'New Title', rant: 'Tests are great'})
 			.end(function(err, res) {
 				expect(err).to.eql(null);
-				expect(res.body.msg).to.eql('Put: Nailed it');
+				expect(res.body.msg).to.eql('Put request complete');
 				done();
 			});	
-	});
-
-	it('should update a Rant', function(done){
-		chai.request('localhost:3000')
-			.patch('/api/rants/' + this.rantTest._id)
-			.send({title: 'New Title', rant: 'Tests are more than great'})
-			.end(function(err, res) {
-				expect(err).to.eql(null);
-				expect(res.body.msg).to.eql('Patch: Nailed it');
-				done();
-			});	
+			
 	});
 
 	it('should delete a Rant', function(done){
 		chai.request('localhost:3000')
-			.delete('/api/rants/' + this.rantTest._id)
+			.delete('/api/rants/' + testID)
 			.end(function(err, res) {
 				expect(err).to.eql(null);
-				expect(res.body.msg).to.eql('Delete: Nailed it');
+				expect(res.body.msg).to.eql('delete request complete');
 				done();
 			});	
 	});
 
-
-
-
-
-
-
 });
-
-
-
-
-
-
