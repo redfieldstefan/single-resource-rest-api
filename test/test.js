@@ -1,8 +1,9 @@
 'use-strict';
 
-process.env.PG_DATABASE = 'notes_test';
-process.env.PG_USER = 'notes_test';
-process.env.PG_PASS = 'foobar123';
+var Sql = require('sequelize');
+var sql = new Sql(process.env.PG_DATABASE, process.env.PG_USER, process.env.PG_PASS, {
+	dialect: 'postgres'
+});
 require('../server');
 
 
@@ -41,19 +42,22 @@ describe('Rant REST api, get and post requests', function() {
 
 describe('Needs Rants to alter', function() {
 
-	var testID;
+	var id;
 
 	before(function(done) {
-		Rant.create({title: 'Test', rant: 'Fuck psql'}).then(function(task){
-			task.save();
-			testID = task.id;
-		});
-		done();
+		sql.sync()
+		.then(function(){
+			Rant.create({title: 'Test', rant: 'Change This'})
+				.then(function(rant){
+					id = rant.id;
+					done();
+				});
+		})
 	}); 
 
 	it('should replace a Rant', function(done){
 		chai.request('localhost:3000')
-			.put('/api/rants/' + testID )
+			.put('/api/rants/' + id )
 			.send({title: 'New Title', rant: 'Tests are great'})
 			.end(function(err, res) {
 				expect(err).to.eql(null);
@@ -65,7 +69,7 @@ describe('Needs Rants to alter', function() {
 
 	it('should delete a Rant', function(done){
 		chai.request('localhost:3000')
-			.delete('/api/rants/' + testID)
+			.delete('/api/rants/' + id)
 			.end(function(err, res) {
 				expect(err).to.eql(null);
 				expect(res.body.msg).to.eql('delete request complete');
