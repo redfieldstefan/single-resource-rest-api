@@ -52,7 +52,7 @@ describe('Needs Rants to alter', function() {
 					id = rant.id;
 					done();
 				});
-		})
+		});
 	}); 
 
 	it('should replace a Rant', function(done){
