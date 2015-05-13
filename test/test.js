@@ -1,6 +1,6 @@
 'use-strict';
 
-process.env.MONGOLAB_URI = 'mongodb://localhost/notes_test';
+process.env.MONGOLAB_URI = 'mongodb://localhost/rant_test';
 require('../server');
 
 var mongoose = require('mongoose');
@@ -55,6 +55,12 @@ describe('Needs Rants to alter', function() {
 		}.bind(this));
 	}); 
 
+	after(function(done) {
+		mongoose.connection.db.dropDatabase(function() {
+			done();
+		});
+	});
+
 	it('should replace a Rant', function(done){
 		chai.request('localhost:3000')
 			.put('/api/rants/' + this.rantTest._id)
@@ -87,16 +93,4 @@ describe('Needs Rants to alter', function() {
 			});	
 	});
 
-
-
-
-
-
-
 });
-
-
-
-
-
-
