@@ -2,6 +2,7 @@
 
 var Rant = require('../models/Rant');
 var bodyparser = require('body-parser');
+var eatAuth = require('../lib/eat_auth')(process.env.APP_SECRET)
 
 module.exports = function(router) {
 	router.use(bodyparser.json());
@@ -16,7 +17,7 @@ module.exports = function(router) {
 		});
 	});
 
-	router.post('/rants', function(req, res){
+	router.post('/rants', eatAuth, function(req, res){
 		var newRant = new Rant(req.body);
 		newRant.save(function(err, data){
 			if(err){
