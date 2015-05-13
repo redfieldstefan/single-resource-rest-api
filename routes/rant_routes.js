@@ -3,7 +3,7 @@
 var bodyParser = require('body-parser');
 var Rant = require('../models/Rant');
 var Sql = require('sequelize');
-var sql = new Sql('notes_dev', 'notes_dev', 'foobar123', {
+var sql = new Sql(process.env.PG_DATABASE, process.env.PG_USER, process.env.PG_PASS, {
 	dialect: 'postgres'
 });
 
@@ -40,10 +40,10 @@ module.exports = function (router) {
 	});
 
 	router.put('/rants/:id', function(req, res) {
-		var id = req.params.id;
+		var putID = req.params.id;
 		sql.sync()
 		.then(function(){
-			Rant.find(id)
+			Rant.find(putID)
 			.then(function(item){
 				item.updateAttributes({
 					title: req.body.title,
@@ -57,7 +57,7 @@ module.exports = function (router) {
 		 	console.log(err);
 		 	res.status(500).json({msg: 'Internal server error'});
 		 });
-		})
+		});
 	});
 
 	router.delete('/rants/:id', function(req, res) {
@@ -75,7 +75,7 @@ module.exports = function (router) {
 		 	console.log(err);
 		 	res.status(500).json({msg: 'Internal server error'});
 		 });
-		})
+		});
 	});
 
 
