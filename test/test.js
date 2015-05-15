@@ -1,6 +1,6 @@
 'use-strict';
 
-process.env.MONGOLAB_URI = 'mongodb://localhost/notes_test';
+process.env.MONGOLAB_URL = 'mongodb://localhost/notes_test';
 require('../server');
 
 var mongoose = require('mongoose');
