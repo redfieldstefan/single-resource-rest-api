@@ -15,18 +15,29 @@ var expect = chai.expect;
 
 describe('Rant REST api, get and post requests', function() {
 
-	it('Should create a Rant object', function(done){
-		chai.request('localhost:3000/')
-			.post('api/rants')
-			.send({title: 'Test', rant: 'Test rant'})
-			.end(function(err, res) {
-				expect(err).to.eql(null);
-				expect(res.body.title).to.eql('Test');
-				expect(res.body.rant).to.eql('Test rant');
-				expect(res.body).to.have.property('id');
-				done();
-			});
+	after(function(done) {
+		sql.sync()
+			.then(function(){
+				Rant.find({where: {title: 'Test'}})
+					.then(function(seek){
+						seek.destroy();
+					});
+		});
+		done();
 	});
+
+	// it('Should create a Rant object', function(done){
+	// 	chai.request('localhost:3000/')
+	// 		.post('api/rants')
+	// 		.send({title: 'Test', rant: 'Test rant'})
+	// 		.end(function(err, res) {
+	// 			expect(err).to.eql(null);
+	// 			expect(res.body.title).to.eql('Test');
+	// 			expect(res.body.rant).to.eql('Test rant');
+	// 			expect(res.body).to.have.property('id');
+	// 			done();
+	// 		});
+	// });
 
 	it('Should get an array of Rant objects', function(done){
 		chai.request('localhost:3000/')
@@ -38,6 +49,7 @@ describe('Rant REST api, get and post requests', function() {
 				done();
 			});
 	});
+
 });
 
 describe('Needs Rants to alter', function() {
