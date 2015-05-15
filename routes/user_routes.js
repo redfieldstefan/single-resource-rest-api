@@ -2,19 +2,25 @@
 
 var User = require('../models/User');
 var bodyparser = require('body-parser');
-// var passport = require('passport');
 var user = new User();
 
 module.exports = function(router, passport) {
 	router.use(bodyparser.json());
-
+	
 	router.post('/create_user', function(req, res) {
 		var userData = JSON.parse(JSON.stringify(req.body));
 		delete userData.email;
 		delete userData.password;
 		var newUser = new User(userData);
 		newUser.basic.email = req.body.email;
-		newUser.basic.password = req.body.password;
+		newUser.generateHash(req.body.password, function(err, hash) {
+			if(err){
+				console.log(err);
+				return res.status(500).json({msg: "Could not create new user"});
+			}
+			newUser.basic.password = hash;
+		});
+
 		newUser.save(function(err, data) {
 			if(err) {
 				console.log(err);
