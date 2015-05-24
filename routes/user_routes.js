@@ -20,14 +20,14 @@ module.exports = function(router, passport) {
 			}
 			newUser.basic.password = hash;
 		});
-
+		newUser.generateId();
 		newUser.save(function(err, data) {
 			if(err) {
 				console.log(err);
 				return res.status(500).json({msg: 'Could not create new user'});
 			}
 
-			user.generateToken(process.env.APP_SECRET, function(err, token) {
+			newUser.generateToken(process.env.APP_SECRET, function(err, token) {
 				if(err){
 					console.log(err);
 					return res.status(500).json({msg:'Error generating token'});
