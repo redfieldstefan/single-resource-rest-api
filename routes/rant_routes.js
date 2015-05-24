@@ -24,9 +24,7 @@ module.exports = function(router) {
 				console.log(err);
 				return res.status(500).json({msg: 'Uh oh! There must have been a server error somewhere.'});
 			}
-
 			res.json(data);
-			
 		});
 	});
 
@@ -39,7 +37,6 @@ module.exports = function(router) {
 				console.log(err);
 				return res.status(500).json({msg: 'internal server error'});
 			}
-
 			res.json({msg: "Put: Nailed it"});
 		});
 	});
@@ -53,7 +50,6 @@ module.exports = function(router) {
 				console.log(err);
 				return res.status(500).json({msg: 'internal server error'});
 			}
-
 			res.json({msg: "Patch: Nailed it"});
 		});
 	});
@@ -64,7 +60,6 @@ module.exports = function(router) {
 				console.log(err);
 				return res.status(500).json({msg: 'internal server error'});
 			}
-
 			res.json({msg: 'Delete: Nailed it'});
 		});
 	});
