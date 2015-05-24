@@ -37,6 +37,7 @@
     "mongoose": "^4.0.2",
     "mongoose-validator": "^1.0.3",
     "passport": "^0.2.1",
-    "passport-http": "^0.2.2"
+    "passport-http": "^0.2.2",
+    "uuid": "^2.0.1"
   }
 }
