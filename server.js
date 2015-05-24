@@ -10,7 +10,7 @@ var rantRoutes = express.Router();
 var userRoutes = express.Router();
 
 process.env.APP_SECRET = process.env.APP_SECRET || 'changethischangethis';
-mongoose.connect(process.env.MONGOLAB_URL || 'mongodb://localhost/rant_store');
+mongoose.connect(process.env.MONGOLAB_URI || 'mongodb://localhost/rant_store');
 
 app.use(passport.initialize());
 require('./lib/passport_strat')(passport);
