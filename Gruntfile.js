@@ -10,7 +10,7 @@ module.exports = function (grunt) {
 	grunt.loadNpmTasks('grunt-contrib-copy');
 	grunt.loadNpmTasks('grunt-contrib-clean');
 
-	var srcFiles = ['Gruntfile.js', './test/**/*test.js', './routes/*.js', './models/*.js', './lib/*.js'];
+	var srcFiles = ['Gruntfile.js', './test/**/*test.js', './routes/*.js', './models/*.js', './lib/*.js', './app/**/*.js'];
 
 	grunt.initConfig({
 
@@ -79,7 +79,8 @@ module.exports = function (grunt) {
 	});
 
 	grunt.registerTask('test', ['jshint:dev', 'simplemocha:dev']);
-	grunt.registerTask('build:dev', ['webpack:client', 'copy:html'])
+	grunt.registerTask('build:dev', ['webpack:client', 'copy:html']);
+	grunt.registerTask('build:test', ['webpack:test', 'copy:html']);
 	grunt.registerTask('default', ['test']);
 };
 
