@@ -17,7 +17,7 @@ module.exports = function(router) {
 		});
 	});
 
-	router.post('/rants', eatAuth, function(req, res){
+	router.post('/rants', function(req, res){
 		var newRant = new Rant(req.body);
 		newRant.save(function(err, data){
 			if(err){
