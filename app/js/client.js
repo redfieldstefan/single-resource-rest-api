@@ -1,12 +1,12 @@
 'use strict';
 
 var greet = require('./greet');
-document.write(greet('Stefan'));
-
+document.write(greet('Stefan Redfield'));
 var request = require('superagent');
 var rantList = document.getElementById('rantList');
+var body = document.body;
 
-request('localhost:3000')
+ request
 	.get('/api/rants')
 	.end(function (err, res) {
 		if(err) {
@@ -15,8 +15,11 @@ request('localhost:3000')
 
 		var rants = JSON.parse(res.text);
 		rants.forEach(function(rant) {
+			console.log(rant.rant);
 			var rantEl = document.createElement('li');
-			rantEl.innerHMTL = rant.rantBody;
-			rantList.append(rantEl);
+			// var test = document.createTextNode(rant.title + ': ' + rant.rant);
+			rantEl.innerHTML = rant.title + ': ' + rant.rant;
+			// rantEl.appendChild(test);
+			rantList.appendChild(rantEl);
 		});
-	})
+	});
