@@ -10,7 +10,8 @@ module.exports = function (grunt) {
 	grunt.loadNpmTasks('grunt-contrib-copy');
 	grunt.loadNpmTasks('grunt-contrib-clean');
 
-	var srcFiles = ['Gruntfile.js', './test/**/*test.js', './routes/*.js', './models/*.js', './lib/*.js', './app/**/*.js', './app/**/*.html'];
+	var srcFiles = ['Gruntfile.js', './test/**/*test.js', './routes/*.js', './models/*.js', './lib/*.js', './app/**/*.js'];
+	var bldFiles = ['Gruntfile.js', './test/**/*test.js', './routes/*.js', './models/*.js', './lib/*.js', './app/**/*.js', './app/**/*.html'];
 
 	grunt.initConfig({
 
@@ -74,7 +75,7 @@ module.exports = function (grunt) {
 		},
 
 		watch: {
-			files: srcFiles,
+			files: bldFiles,
 			html: {
                 files: ['./app/**/*.html'],
                 options: {
