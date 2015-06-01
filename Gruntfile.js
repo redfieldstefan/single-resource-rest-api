@@ -10,7 +10,7 @@ module.exports = function (grunt) {
 	grunt.loadNpmTasks('grunt-contrib-copy');
 	grunt.loadNpmTasks('grunt-contrib-clean');
 
-	var srcFiles = ['Gruntfile.js', './test/**/*test.js', './routes/*.js', './models/*.js', './lib/*.js', './app/**/*.js'];
+	var srcFiles = ['Gruntfile.js', './test/**/*test.js', './routes/*.js', './models/*.js', './lib/*.js', './app/**/*.js', './app/**/*.html'];
 
 	grunt.initConfig({
 
@@ -21,6 +21,8 @@ module.exports = function (grunt) {
 					path:'build/',
 					file:'bundle.js'
 				}
+				// watch: true,
+				// keepalive: true
 			},
 
 			test: {
@@ -29,7 +31,7 @@ module.exports = function (grunt) {
 					path: 'test/client',
 					file: 'test_bundle.js'
 				}
-			}
+			},
 		},
 
 		copy:{
@@ -73,7 +75,13 @@ module.exports = function (grunt) {
 
 		watch: {
 			files: srcFiles,
-			tasks: ['jshint:dev']
+			html: {
+                files: ['./app/**/*.html'],
+                options: {
+                    livereload: true
+                }
+            },
+			tasks: ['webpack:client', 'copy:html']
 		}
 
 	});
