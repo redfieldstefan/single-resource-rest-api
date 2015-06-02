@@ -63,7 +63,7 @@ describe('rants controller test', function() {
 		});
 
 		it('should delete a rant', function() {
-			var rant = {_id: 3, title: 'TESTING', rant:'TESTNG RANT'}
+			var rant = {_id: 3, title: 'TESTING', rant:'TESTNG RANT'};
 			$scope.rants.push(rant);
 			$httpBackend.expectDELETE('/api/rants/3').respond(200, {msg: 'success!'});
 			expect($scope.rants.indexOf(rant)).not.toBe(-1);
@@ -73,7 +73,7 @@ describe('rants controller test', function() {
 		});
 
 		it('should delete a rant even on server error', function() {
-			var rant = {_id: 4, title: 'TESTING', rant:'TESTNG RANT'}
+			var rant = {_id: 4, title: 'TESTING', rant:'TESTNG RANT'};
 			$scope.rants.push(rant);
 			$httpBackend.expectDELETE('/api/rants/4').respond(500, {msg: 'wahwah!'});
 			expect($scope.rants.indexOf(rant)).not.toBe(-1);
