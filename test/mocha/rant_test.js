@@ -1,13 +1,13 @@
 'use-strict';
 
 process.env.MONGOLAB_URI = 'mongodb://localhost/rant_test';
-require('../server');
+require('../../server');
 
 var mongoose = require('mongoose');
 var chai = require('chai');
 var chaihttp = require('chai-http');
-var Rant = require('../models/Rant.js');
-var User = require('../models/User.js');
+var Rant = require('../../models/Rant.js');
+var User = require('../../models/User.js');
 var user = new User();
 var eat = require('eat');
 chai.use(chaihttp);
