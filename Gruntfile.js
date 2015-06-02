@@ -63,7 +63,8 @@ module.exports = function (grunt) {
 
 		jshint: {
 			dev: {
-				src: srcFiles
+				src: srcFiles,
+				ignores: ['./test/karma_tests/rants_controller_test.js']
 			},
 
 			options: {
@@ -73,7 +74,7 @@ module.exports = function (grunt) {
 
 		simplemocha: {
 			dev: {
-				src: ['./test/**/*test.js']
+				src: ['./test/mocha/**/*test.js']
 			}
 		},
 
