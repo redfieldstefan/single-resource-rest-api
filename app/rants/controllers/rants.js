@@ -45,6 +45,10 @@ module.exports = function(app) {
 
 		};
 
+		$scope.reset = function() {
+			$scope.newRantForm.$rollbackViewValue();
+		}
+
 		$scope.clearErrors = function() {
 			$scope.errors = [];
 			$scope.newRantForm.$rollbackViewValue();
