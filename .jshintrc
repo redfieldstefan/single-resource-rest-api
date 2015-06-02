@@ -1,5 +1,7 @@
 {
 	"node": true,
+	"jasmine": true,
+	"mocha": true,
 	"globals": {
 		"describe": true,
 		"it": true,
@@ -7,6 +9,7 @@
 		"after": true,
 		"beforeEach": true,
 		"angular": true,
-		"afterEach": true
+		"afterEach": true,
+		"expect": true
 	}
 }
