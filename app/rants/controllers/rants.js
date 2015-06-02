@@ -49,6 +49,6 @@ module.exports = function(app) {
 			$scope.errors = [];
 			$scope.newRantForm.$rollbackViewValue();
 			$scope.getAll();
-		}
+		};
 	}]);
 };
