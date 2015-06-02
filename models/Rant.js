@@ -20,7 +20,7 @@ var rantValidator = [
 ];
 
 var rantSchema = mongoose.Schema({
-	title: {type: String, validate: titleValidator},
+	title: {type: String, required: 'a title is required', validate: titleValidator},
 	rant: {type: String, required: 'a rant is required', validate: rantValidator},
 	recipient: String
 });

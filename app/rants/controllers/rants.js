@@ -26,10 +26,6 @@ module.exports = function(app) {
 				});
 		};
 
-		$scope.reset = function(){
-			$scope.rants.$rollbackViewValue();
-		};
-
 		$scope.removeRant = function(rant) {
 			$scope.rants.splice($scope.rants.indexOf(rant), 1);
 			$http.delete('/api/rants/' + rant._id)
@@ -48,5 +44,11 @@ module.exports = function(app) {
 				});
 
 		};
+
+		$scope.clearErrors = function() {
+			$scope.errors = [];
+			$scope.newRantForm.$rollbackViewValue();
+			$scope.getAll();
+		}
 	}]);
 };

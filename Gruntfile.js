@@ -9,6 +9,7 @@ module.exports = function (grunt) {
 	grunt.loadNpmTasks('grunt-webpack');
 	grunt.loadNpmTasks('grunt-contrib-copy');
 	grunt.loadNpmTasks('grunt-contrib-clean');
+	grunt.loadNpmTasks('grunt-karma');
 
 	var srcFiles = ['Gruntfile.js', './test/**/*test.js', './routes/*.js', './models/*.js', './lib/*.js', './app/**/*.js'];
 	var bldFiles = ['Gruntfile.js', './test/**/*test.js', './routes/*.js', './models/*.js', './lib/*.js', './app/**/*.js', './app/**/*.html'];
@@ -33,6 +34,14 @@ module.exports = function (grunt) {
 					file: 'test_bundle.js'
 				}
 			},
+
+			karma_test:{
+				entry: __dirname + '/test/karma_tests/karma_entry.js',
+				output: {
+					path: 'test/karma_tests/',
+					file: 'bundle.js'
+				}
+			}
 		},
 
 		copy:{
@@ -82,7 +91,7 @@ module.exports = function (grunt) {
                     livereload: true
                 }
             },
-			tasks: ['webpack:client', 'copy:html']
+			tasks: ['webpack:client', 'webpack:test', 'copy:html']
 		}
 
 	});
