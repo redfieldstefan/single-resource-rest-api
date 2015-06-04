@@ -4,4 +4,13 @@ require('angular/angular');
 
 var rantsApp = angular.module('rantsApp', []);
 
-require('../rants/controllers/rants.js')(rantsApp);
+//SERVICES
+require('./services/rest_resource.js')(rantsApp);
+require('./services/copy')(rantsApp);
+
+//CONTROLLERS
+require('./rants/controllers/rants.js')(rantsApp);
+
+//DIRECTIVES
+require('./directives/first_directive.js')(rantsApp);
+require('./directives/rant_form_directive.js')(rantsApp);

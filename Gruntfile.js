@@ -44,6 +44,12 @@ module.exports = function (grunt) {
 			}
 		},
 
+		karma: {
+			test: {
+				configFile:'karmaConf.js'
+			}
+		},
+
 		copy:{
 			html:{
 				cwd: 'app/',
@@ -62,13 +68,31 @@ module.exports = function (grunt) {
 		},
 
 		jshint: {
+			jasmine: {
+				src: 'test/karma_tests/*test.js',
+				options: {
+					globals:{
+
+					}
+				}
+			},
+
+			mocha: {
+				src: 'test/mocha/*test.js',
+				options: {
+					globals:{
+
+					}
+				}
+			},
+
 			dev: {
-				src: srcFiles,
-				ignores: ['./test/karma_tests/rants_controller_test.js']
+				src: srcFiles
 			},
 
 			options: {
-				jshintrc: true
+				// jshintrc: true,
+				// ignores: ['./test/karma_tests/rants_controller_test.js']
 			}
 		},
 
@@ -92,7 +116,7 @@ module.exports = function (grunt) {
                     livereload: true
                 }
             },
-			tasks: ['webpack:client', 'webpack:test', 'copy:html']
+			tasks: ['webpack:client', 'copy:html']
 		}
 
 	});

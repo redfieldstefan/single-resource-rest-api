@@ -9,7 +9,6 @@
 		"after": true,
 		"beforeEach": true,
 		"angular": true,
-		"afterEach": true,
-		"expect": true
+		"afterEach": true
 	}
 }
