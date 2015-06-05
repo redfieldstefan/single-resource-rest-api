@@ -1,6 +1,6 @@
 <form name='rantForm' ng-model-options="{updateOn: 'submit'}" data-ng-submit='save({rant: newRant})'>
-	<input type = 'text' placeholder='Title' data-ng-model='newRant.title'>
-	<input type = 'text' placeholder='Rant' data-ng-model='newRant.rant'>
-	<button type='submit'>{{buttonText}}</button>
-	<button type='button' data-ng-click='reset()'>Cancel</button>
+	<input type = 'text' required placeholder='Title' data-ng-model='newRant.title'>
+	<input type = 'text' required placeholder='Rant' data-ng-model='newRant.rant'>
+	<button type='submit' >{{buttonText}}</button>
+	<button type='button' data-ng-click='rantForm.$rollbackViewValue(); rant.editing=false'>Cancel</button>
 </form>

@@ -45,7 +45,9 @@ module.exports = function(app) {
 		};
 
 		$scope.reset = function() {
+			console.log('HERE WE ARE!!!')
 			$scope.rantForm.$rollbackViewValue();
+			rant.editing = false;
 		}
 
 		$scope.clearErrors = function() {

@@ -8,6 +8,7 @@ module.exports = function (app) {
 			templateUrl: '/templates/directives/rant_form.html',
 			scope: {
 				save: '&', 
+				reset: '&',
 				buttonText: '=',
 				labelText: '@',
 				rant: '='

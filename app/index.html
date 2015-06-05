@@ -19,18 +19,24 @@
 	    			{{rant.title}}: {{rant.rant}}
 	    			<button data-ng-click='removeRant(rant)'>Delete</button>
 	    			<button data-ng-if='!rant.editing' data-ng-click='rant.editing=true'>EDIT</button>
-	    			<form name = "rantUpdate" data-ng-if='rant.editing' ng-model-options="{updateOn: 'submit'}" data-ng-submit ='saveRant(rant)'>
-	    				<input type = 'text' name = 'rantTitle' data-ng-model='rant.title'>
-	    				<input type = 'text' name = 'rantBody' data-ng-model='rant.rant'>
-	    				<button type='submit'>Save Changes</button>
-	    				<button data-ng-click='rant.editing=false'>Cancel</button> 
-	    			</form>
+	    			<div 
+			    		data-rant-form-directive
+			    		data-save='saveRant(rant)'
+			    		data-reset='reset()'
+			    		data-button-text="'Update'"
+			    		data-label-text="Editing Rant"
+			    		data-ng-if="rant.editing"
+               			data-rant="rant">
+	    			</div>
 	    		</li>
 	    	</ul>
-	    	<div data-rant-form-directive
-	    		 data-save='createNewRant(rant)'
-	    		 data-button-text="'create new rant'"
-	    		 data-label-text="Create a new rant"></div>
+	    	<div 
+	    		data-rant-form-directive
+	    		data-save='createNewRant(rant)'
+	    		data-reset='reset()'
+	    		data-button-text="'create new rant'"
+	    		data-label-text="Create a new rant">
+	    	</div>
 
 	  	</main>
 	  	<script src="bundle.js"></script>
@@ -38,10 +44,12 @@
 </html>
 
 
-
-
-
-
+<!-- <form name = "rantUpdate" data-ng-if='rant.editing' ng-model-options="{updateOn: 'submit'}" data-ng-submit ='saveRant(rant)'>
+	<input type = 'text' name = 'rantTitle' data-ng-model='rant.title'>
+	<input type = 'text' name = 'rantBody' data-ng-model='rant.rant'>
+	<button type='submit'>Save Changes</button>
+	<button data-ng-click='rant.editing=false'>Cancel</button> 
+</form> -->
 
 
 
