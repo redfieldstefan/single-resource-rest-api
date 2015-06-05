@@ -14,6 +14,6 @@ module.exports = function (app) {
 				rant: '='
 			},
 			transclude: true
-		}
+		};
 	});
 };

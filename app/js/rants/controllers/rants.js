@@ -10,7 +10,7 @@ module.exports = function(app) {
 			Rant.getAll(function(err, data) {
 				if (err) return $scope.errors.push({msg: 'error retrieving rants'});
 				$scope.rants = data;
-			})
+			});
 		};
 
 		$scope.createNewRant = function(rant) {
@@ -44,11 +44,11 @@ module.exports = function(app) {
 			});
 		};
 
-		$scope.reset = function() {
-			console.log('HERE WE ARE!!!')
-			$scope.rantForm.$rollbackViewValue();
-			rant.editing = false;
-		}
+		// $scope.reset = function() {
+		// 	console.log('HERE WE ARE!!!')
+		// 	$scope.rantForm.$rollbackViewValue();
+		// 	rant.editing = false;
+		// }
 
 		$scope.clearErrors = function() {
 			$scope.errors = [];

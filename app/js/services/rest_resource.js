@@ -20,27 +20,27 @@ module.exports = function(app) {
 				getAll: function(callback) {
 					$http.get('/api/' + resourceName)
 						.success(handleSuccess(callback))
-						.error(handleError(callback))
+						.error(handleError(callback));
 				},
 
 				create: function(resourceData, callback){
 					$http.post('/api/' + resourceName, resourceData)
 						.success(handleSuccess(callback))
-						.error(handleError(callback))
+						.error(handleError(callback));
 				},
 
 				save: function(resourceData, callback) {
 					$http.put('/api/' + resourceName + '/' + resourceData._id, resourceData)
 						.success(handleSuccess(callback))
-						.error(handleError(callback))
+						.error(handleError(callback));
 				},
 
 				remove: function(resourceData, callback) {
 					$http.delete('/api/' + resourceName + '/' + resourceData._id)
 						.success(handleSuccess(callback))
-						.error(handleError(callback))
+						.error(handleError(callback));
 				}
-			}
+			};
 		};
 	}]);
 };

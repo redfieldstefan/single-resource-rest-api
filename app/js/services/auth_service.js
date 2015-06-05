@@ -2,13 +2,13 @@
 
 
 module.exports = function(app) {
-	app.factory('auth' ['$http', '$base64',  '$cookies', function($http, $base64, $cookies) {
+	app.factory('auth', ['$http', '$base64',  '$cookies', function($http, $base64, $cookies) {
 		return {
 			signIn: function(user, callback) {
 				var encoded = $base64.encode(user.username + ':' + user.password);
 				$http.get('/api/sign_in', {
 					headers: {
-						'authorization': 'Basic ' + encoded}
+						'authorization': 'Basic ' + encoded
 					}
 				})
 				.success(function(data) {
@@ -17,7 +17,7 @@ module.exports = function(app) {
 				})
 				.error(function(data){
 					callback(data);
-				})
+				});
 			},
 			create: function(user, callback) {
 				$http.post('/api/create_user', user)
@@ -27,7 +27,7 @@ module.exports = function(app) {
 					})
 					.error(function(data) {
 						callback(data);
-					})
+					});
 			},
 			logout: function() {
 				$cookies.put('eat', '');
