@@ -91,7 +91,7 @@ module.exports = function (grunt) {
 			},
 
 			options: {
-				// jshintrc: true,
+				jshintrc: true
 				// ignores: ['./test/karma_tests/rants_controller_test.js']
 			}
 		},
