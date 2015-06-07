@@ -37,18 +37,36 @@ module.exports = function(app) {
 
 		$scope.saveRant = function(rant) {
 			rant.editing = false;
-			Rant.save(rant, function(err) {
+			Rant.save(rant, function(err, data) {
 				if(err) {
 					$scope.errors.push({msg: 'Could not save this rant: ' + rant.title});
 				}
 			});
 		};
 
-		// $scope.reset = function() {
-		// 	console.log('HERE WE ARE!!!')
-		// 	$scope.rantForm.$rollbackViewValue();
-		// 	rant.editing = false;
-		// }
+		$scope.startEdit=function(rant) {
+			rant.editing = true;
+			rant.titleBackup = rant.title;
+			rant.rantBackup = rant.rant;
+		};
+
+		$scope.revert = function(rant) {
+			if(rant.editing){
+				rant.title= rant.titleBackup;
+				rant.rant = rant.rantBackup;
+				rant.titleBackup = undefined;
+				rant.rantBackup = undefined;
+				rant.editing = false;
+			} else {
+				rant.titleBackup = rant.title;
+				rant.rantBackup = rant.rant;
+				rant.editing = true;
+			}
+		};
+
+		$scope.reset = function() {
+			document.getElementById("rantForm").reset();
+		};
 
 		$scope.clearErrors = function() {
 			$scope.errors = [];

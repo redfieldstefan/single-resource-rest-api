@@ -12,5 +12,4 @@ require('./services/copy')(rantsApp);
 require('./rants/controllers/rants.js')(rantsApp);
 
 //DIRECTIVES
-require('./directives/first_directive.js')(rantsApp);
 require('./directives/rant_form_directive.js')(rantsApp);
