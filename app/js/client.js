@@ -16,7 +16,6 @@ require('./rants/controllers/rants.js')(rantsApp);
 require('./auth/controllers/auth_controller.js')(rantsApp)
 
 //DIRECTIVES
-require('./directives/first_directive.js')(rantsApp);
 require('./directives/rant_form_directive.js')(rantsApp);
 
 rantsApp.config(['$routeProvider', function($routeProvider) {
@@ -40,3 +39,4 @@ rantsApp.config(['$routeProvider', function($routeProvider) {
 			redirectTo: '/create_user'
 		})
 }]);
+

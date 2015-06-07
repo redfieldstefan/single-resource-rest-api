@@ -21,14 +21,14 @@
 	  			<button data-ng-click='clearErrors()'>Clear Errors</button>
 	  		</aside>
 	    	<ul data-ng-repeat='rant in rants'>
-	    		<li name = 'thisRant'>
+	    		<li>
 	    			{{rant.title}}: {{rant.rant}}
 	    			<button data-ng-click='removeRant(rant)'>Delete</button>
-	    			<button data-ng-if='!rant.editing' data-ng-click='rant.editing=true'>EDIT</button>
+	    			<button data-ng-if='!rant.editing' data-ng-click='startEdit(rant)'>EDIT</button>
 	    			<div 
 			    		data-rant-form-directive
 			    		data-save='saveRant(rant)'
-			    		data-reset='reset()'
+			    		data-reset='revert(rant)'
 			    		data-button-text="'Update'"
 			    		data-label-text="Editing Rant"
 			    		data-ng-if="rant.editing"
@@ -39,7 +39,7 @@
 	    	<div 
 	    		data-rant-form-directive
 	    		data-save='createNewRant(rant)'
-	    		data-reset='reset()'
+	    		data-reset='reset(rant)'
 	    		data-button-text="'create new rant'"
 	    		data-label-text="Create a new rant">
 	    	</div>
