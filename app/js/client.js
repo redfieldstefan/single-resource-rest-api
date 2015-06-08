@@ -25,14 +25,14 @@ rantsApp.config(['$routeProvider', function($routeProvider) {
 			controller: 'rantsController'
 		})
 		.when('/', {
-			redirectTo: '/rants'
+			redirectTo: '/create_user'
 		})
 		.when('/sign_in', {
-			templateUrl: 'templates/views/sign_in.html',
+			templateUrl: 'templates/views/sign_in_view.html',
 			controller: 'authController'
 		})
 		.when('/create_user', {
-			templateUrl: 'templates/views/create_user.html',
+			templateUrl: 'templates/views/create_user_view.html',
 			controller: 'authController'
 		})
 		.otherwise({
