@@ -16,6 +16,6 @@ module.exports = function(app) {
           $location.path('/sign_in');
         };
       }]
-    }
+    };
   });
 };

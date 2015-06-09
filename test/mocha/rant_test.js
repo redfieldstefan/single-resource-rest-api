@@ -44,7 +44,7 @@ describe('Rant REST api, get and post requests', function() {
 	it('Should create a Rant object', function(done){
 		chai.request('localhost:3000/')
 			.post('api/rants')
-			.send({title: 'Test', rant: 'Test rant', token: testToken})
+			.send({title: 'Test', rant: 'Test rant', eat: testToken})
 			.end(function(err, res) {
 				expect(err).to.eql(null);
 				expect(res.body.title).to.eql('Test');
@@ -57,6 +57,7 @@ describe('Rant REST api, get and post requests', function() {
 	it('Should get an array of Rant objects', function(done){
 		chai.request('localhost:3000/')
 			.get('api/rants')
+			.send({eat: testToken})
 			.end(function(err, res) {
 				expect(err).eql(null);
 				expect(typeof res.body).to.eql('object');
@@ -67,6 +68,26 @@ describe('Rant REST api, get and post requests', function() {
 });
 
 describe('Needs Rants to alter', function() {
+
+	var testToken;
+	before(function(done){
+		var testUser = new User({"username":"testUser", "basic.email":"testUser@example.com", "basic.password":"test123"});
+		testUser.generateId();
+		testUser.save(function(err, data) {
+			if(err) {
+				throw err;
+			}
+			testUser.generateToken(process.env.APP_SECRET, function(err, token) {
+				if(err){
+					console.log(err);
+					return res.status(500).json({msg:'Error generating token'});
+				}
+				testToken = "'" + token + "'";
+				console.log(testToken); 
+				done();
+			});
+		});
+	});
 
 	beforeEach(function(done) {
 		var rantTest = new Rant({title: 'Test', rant: 'Neat tests'});
@@ -88,7 +109,7 @@ describe('Needs Rants to alter', function() {
 	it('should replace a Rant', function(done){
 		chai.request('localhost:3000')
 			.put('/api/rants/' + this.rantTest._id)
-			.send({title: 'New Title', rant: 'Tests are great'})
+			.send({title: 'New Title', rant: 'Tests are great', eat: testToken})
 			.end(function(err, res) {
 				expect(err).to.eql(null);
 				expect(res.body.msg).to.eql('Put: Nailed it');
