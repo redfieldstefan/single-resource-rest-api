@@ -5,7 +5,7 @@ module.exports = function(app) {
 		$scope.errors = [];
 		$scope.authSubmit = function(user) {
 			if(user.password_confirmation){
-				auth.create(user, function(){
+				auth.create(user, function(err){
 					if(err){
 						console.log(err);
 						return $scope.errors.push({msg: 'could not sign in'});
@@ -18,10 +18,10 @@ module.exports = function(app) {
 						console.log(err);
 						$scope.errors.push({msg: 'could not sign in'});
 					}
-
 					$location.path('/rants');
 				});
 			}
 		};	
 	}]);
 };
+

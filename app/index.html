@@ -4,77 +4,9 @@
 	  	<meta charset="UTF-8">
 	  	<title>Client side</title>
 	</head>
-	<body data-ng-app = 'rantsApp'>
+	<body data-ng-app ='rantsApp'>
 		<div data-logout-directive></div>
 		<main data-ng-view></main>
-		<scrip src='bundle.js'>
+		<script src='bundle.js'></script>
 	</body>
 </html>
-
-<!-- <!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <title>Client Side</title>
-</head>
-<body data-ng-app="notesApp">
-  <div data-logout-directive></div>
-  <main data-ng-view></main>
-
-  <script src="bundle.js"></script>
-</body>
-</html> -->
-
-
-
-
-<!-- <!DOCTYPE html>
-<html lang="en">
-	<head>
-	  	<meta charset="UTF-8">
-	  	<title>Client Side</title>
-	</head>
-	<body data-ng-app = 'rantsApp'>
-		<main data-ng-view>
-			
-		</main>
-	  	<script src="bundle.js"></script>
-	</body>
-</html>
-	  	<main data-ng-controller='rantsController' data-ng-init='getAll()'>
-	  		<h1>RANTS</h1>
-	  		<aside data-ng-if='errors.length'>
-	  			<h2>Errors:</h2>
-	  			<ul data-ng-repeat='error in errors'>
-	  				<li>{{error.msg}}</li>
-	  			</ul>
-	  			<button data-ng-click='clearErrors()'>Clear Errors</button>
-	  		</aside>
-	    	<ul data-ng-repeat='rant in rants'>
-	    		<li>
-	    			{{rant.title}}: {{rant.rant}}
-	    			<button data-ng-click='removeRant(rant)'>Delete</button>
-	    			<button data-ng-if='!rant.editing' data-ng-click='startEdit(rant)'>EDIT</button>
-	    			<div 
-			    		data-rant-form-directive
-			    		data-save='saveRant(rant)'
-			    		data-reset='revert(rant)'
-			    		data-button-text="'Update'"
-			    		data-label-text="Editing Rant"
-			    		data-ng-if="rant.editing"
-               			data-rant="rant">
-	    			</div>
-	    		</li>
-	    	</ul>
-	    	<div 
-	    		data-rant-form-directive
-	    		data-save='createNewRant(rant)'
-	    		data-reset='reset(rant)'
-	    		data-button-text="'create new rant'"
-	    		data-label-text="Create a new rant">
-	    	</div>
-
-	  	</main>
-	  	<script src="bundle.js"></script>
-	</body>
-</html> -->
