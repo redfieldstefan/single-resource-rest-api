@@ -1,0 +1,7 @@
+<form id='rantForm' data-ng-submit='save({rant: rant})'>
+	<input type = 'text' required placeholder='Title' data-ng-model='rant.title'>
+	<input type = 'text' required placeholder='Rant' data-ng-model='rant.rant'>
+	<button type='submit'>{{buttonText}}</button>
+	<button type='button' data-ng-click='reset({rant: rant})'>Cancel</button>
+	<div data-ng-transclude></div>
+</form>

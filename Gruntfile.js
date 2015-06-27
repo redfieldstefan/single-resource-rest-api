@@ -9,6 +9,7 @@ module.exports = function (grunt) {
 	grunt.loadNpmTasks('grunt-webpack');
 	grunt.loadNpmTasks('grunt-contrib-copy');
 	grunt.loadNpmTasks('grunt-contrib-clean');
+	grunt.loadNpmTasks('grunt-karma');
 
 	var srcFiles = ['Gruntfile.js', './test/**/*test.js', './routes/*.js', './models/*.js', './lib/*.js', './app/**/*.js'];
 	var bldFiles = ['Gruntfile.js', './test/**/*test.js', './routes/*.js', './models/*.js', './lib/*.js', './app/**/*.js', './app/**/*.html'];
@@ -33,6 +34,20 @@ module.exports = function (grunt) {
 					file: 'test_bundle.js'
 				}
 			},
+
+			karma_test:{
+				entry: __dirname + '/test/karma_tests/karma_entry.js',
+				output: {
+					path: 'test/karma_tests/',
+					file: 'bundle.js'
+				}
+			}
+		},
+
+		karma: {
+			test: {
+				configFile:'karmaConf.js'
+			}
 		},
 
 		copy:{
@@ -53,18 +68,37 @@ module.exports = function (grunt) {
 		},
 
 		jshint: {
+			jasmine: {
+				src: 'test/karma_tests/*test.js',
+				options: {
+					globals:{
+
+					}
+				}
+			},
+
+			mocha: {
+				src: 'test/mocha/*test.js',
+				options: {
+					globals:{
+
+					}
+				}
+			},
+
 			dev: {
 				src: srcFiles
 			},
 
 			options: {
 				jshintrc: true
+				// ignores: ['./test/karma_tests/rants_controller_test.js']
 			}
 		},
 
 		simplemocha: {
 			dev: {
-				src: ['./test/**/*test.js']
+				src: ['./test/mocha/**/*test.js']
 			}
 		},
 
