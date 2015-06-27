@@ -6,7 +6,7 @@ var validate = require('mongoose-validator');
 var titleValidator = [
 	validate({
 		validator: 'isLength',
-		arguments: [1, 15],
+		arguments: [1, 25],
 		message: 'Rant title must be under 15 characters'
 	})
 ];
@@ -20,7 +20,7 @@ var rantValidator = [
 ];
 
 var rantSchema = mongoose.Schema({
-	title: {type: String, required: 'title is required', validate: titleValidator},
+	title: {type: String, required: 'a title is required', validate: titleValidator},
 	rant: {type: String, required: 'a rant is required', validate: rantValidator},
 	recipient: String
 });
