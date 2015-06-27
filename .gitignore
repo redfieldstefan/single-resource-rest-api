@@ -3,3 +3,6 @@
 **/db/*
 .env
 npm-debug.log
+build/**/*
+test/**/*bundle.js
+
