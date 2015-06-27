@@ -1,1 +1,1 @@
-Create a single resource rest API with Express that's backed by Mongo. g
+Create a single resource rest API with Express that's backed by Mongo.

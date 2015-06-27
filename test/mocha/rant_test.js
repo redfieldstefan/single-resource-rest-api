@@ -14,7 +14,7 @@ chai.use(chaihttp);
 var expect = chai.expect;
 
 describe('Rant REST api, get and post requests', function() {
-	
+
 	var testToken;
 	before(function(done){
 		var testUser = new User({"username":"testUser", "basic.email":"testUser@example.com", "basic.password":"test123"});
@@ -29,7 +29,7 @@ describe('Rant REST api, get and post requests', function() {
 					return res.status(500).json({msg:'Error generating token'});
 				}
 				testToken = "'" + token + "'";
-				console.log(testToken); 
+				console.log(testToken);
 				done();
 			});
 		});
@@ -98,7 +98,7 @@ describe('Needs Rants to alter', function() {
 			this.rantTest = data;
 			done();
 		}.bind(this));
-	}); 
+	});
 
 	after(function(done) {
 		mongoose.connection.db.dropDatabase(function() {
@@ -114,7 +114,7 @@ describe('Needs Rants to alter', function() {
 				expect(err).to.eql(null);
 				expect(res.body.msg).to.eql('Put: Nailed it');
 				done();
-			});	
+			});
 	});
 
 	it('should update a Rant', function(done){
@@ -125,7 +125,7 @@ describe('Needs Rants to alter', function() {
 				expect(err).to.eql(null);
 				expect(res.body.msg).to.eql('Patch: Nailed it');
 				done();
-			});	
+			});
 	});
 
 	it('should delete a Rant', function(done){
@@ -135,7 +135,7 @@ describe('Needs Rants to alter', function() {
 				expect(err).to.eql(null);
 				expect(res.body.msg).to.eql('Delete: Nailed it');
 				done();
-			});	
+			});
 	});
 
 });

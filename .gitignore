@@ -6,3 +6,6 @@ test/client/*bundle.js
 test/karma_tests/*bundle.js
 .env
 npm-debug.log
+build/**/*
+test/**/*bundle.js
+
