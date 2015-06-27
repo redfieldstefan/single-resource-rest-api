@@ -2,6 +2,7 @@
 
 var Rant = require('../models/Rant');
 var bodyparser = require('body-parser');
+var eatAuth = require('../lib/eat_auth')(process.env.APP_SECRET);
 
 module.exports = function(router) {
 	router.use(bodyparser.json());
@@ -16,16 +17,14 @@ module.exports = function(router) {
 		});
 	});
 
-	router.post('/rants', function(req, res){
+	router.post('/rants', eatAuth, function(req, res){
 		var newRant = new Rant(req.body);
 		newRant.save(function(err, data){
 			if(err){
 				console.log(err);
 				return res.status(500).json({msg: 'Uh oh! There must have been a server error somewhere.'});
 			}
-
 			res.json(data);
-			
 		});
 	});
 
@@ -38,7 +37,6 @@ module.exports = function(router) {
 				console.log(err);
 				return res.status(500).json({msg: 'internal server error'});
 			}
-
 			res.json({msg: "Put: Nailed it"});
 		});
 	});
@@ -52,7 +50,6 @@ module.exports = function(router) {
 				console.log(err);
 				return res.status(500).json({msg: 'internal server error'});
 			}
-
 			res.json({msg: "Patch: Nailed it"});
 		});
 	});
@@ -63,7 +60,6 @@ module.exports = function(router) {
 				console.log(err);
 				return res.status(500).json({msg: 'internal server error'});
 			}
-
 			res.json({msg: 'Delete: Nailed it'});
 		});
 	});
