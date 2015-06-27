@@ -3,6 +3,7 @@ build
 **/*.log
 **/db/*
 test/client/*bundle.js
+test/karma_tests/*bundle.js
 .env
 npm-debug.log
 build/**/*

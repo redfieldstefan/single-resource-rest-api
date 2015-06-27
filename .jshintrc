@@ -1,12 +1,16 @@
 {
 	"node": true,
+	"jasmine": true,
+	"mocha": true,
 	"globals": {
 		"describe": true,
 		"it": true,
 		"before": true,
 		"after": true,
 		"beforeEach": true,
+		"expect": true,
 		"angular": true,
-		"afterEach": true
+		"afterEach": true,
+		"document": true
 	}
 }

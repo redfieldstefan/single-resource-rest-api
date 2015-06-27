@@ -7,7 +7,7 @@ var eatAuth = require('../lib/eat_auth')(process.env.APP_SECRET);
 module.exports = function(router) {
 	router.use(bodyparser.json());
 
-	router.get('/rants', function(req, res) {
+	router.get('/rants', eatAuth, function(req, res) {
 		Rant.find({}, function(err, data) {
 			if(err){
 				console.log(err);
@@ -17,7 +17,7 @@ module.exports = function(router) {
 		});
 	});
 
-	router.post('/rants', function(req, res){
+	router.post('/rants', eatAuth, function(req, res){
 		var newRant = new Rant(req.body);
 		newRant.save(function(err, data){
 			if(err){
@@ -28,7 +28,7 @@ module.exports = function(router) {
 		});
 	});
 
-	router.put('/rants/:id', function(req, res) {
+	router.put('/rants/:id', eatAuth, function(req, res) {
 		var update = req.body;
 		delete update._id;
 
