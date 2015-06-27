@@ -5,7 +5,7 @@ module.exports = function(app) {
 		var Rant = resource('rants');
 		$scope.errors = [];
 		$scope.rants = [];
-		
+
 		$scope.getAll = function() {
 			Rant.getAll(function(err, data) {
 				if (err) return $scope.errors.push({msg: 'error retrieving rants'});

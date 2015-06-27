@@ -7,7 +7,7 @@ module.exports = function (app) {
 			replace: true,
 			templateUrl: '/templates/directives/rant_form.html',
 			scope: {
-				save: '&', 
+				save: '&',
 				reset: '&',
 				buttonText: '=',
 				labelText: '@',

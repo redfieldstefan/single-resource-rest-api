@@ -23,8 +23,6 @@ module.exports = function (grunt) {
 					path:'build/',
 					file:'bundle.js'
 				}
-				// watch: true,
-				// keepalive: true
 			},
 
 			test: {
