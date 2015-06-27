@@ -19,7 +19,7 @@
 	    			{{rant.title}}: {{rant.rant}}
 	    			<button data-ng-click='removeRant(rant)'>Delete</button>
 	    			<button data-ng-if='!rant.editing' data-ng-click='startEdit(rant)'>EDIT</button>
-	    			<div 
+	    			<div
 			    		data-rant-form-directive
 			    		data-save='saveRant(rant)'
 			    		data-reset='revert(rant)'
@@ -30,7 +30,7 @@
 	    			</div>
 	    		</li>
 	    	</ul>
-	    	<div 
+	    	<div
 	    		data-rant-form-directive
 	    		data-save='createNewRant(rant)'
 	    		data-reset='reset(rant)'
